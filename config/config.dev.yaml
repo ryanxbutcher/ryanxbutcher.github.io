@@ -1,0 +1,14 @@
+# Development environment overrides
+
+environment: dev
+
+database:
+  type: sqlite
+  sqlite_path: ./db/ems-warehouse.db
+
+etl:
+  batch_size: 10000
+
+logging:
+  level: DEBUG
+  console_output: true

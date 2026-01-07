@@ -1,0 +1,24 @@
+# EMS Data Warehouse - ETL Configuration
+# Author: J. Ryan Butcher
+
+environment: dev
+
+database:
+  type: sqlite
+  sqlite_path: ./db/ems-warehouse.db
+  sqlserver:
+    server: localhost
+    database: EMS_DW
+    trusted_connection: true
+
+etl:
+  batch_size: 50000
+  load_type: full
+  source_path: ./data/input/
+  archive_path: ./data/archive/
+  rejected_path: ./data/rejected/
+
+logging:
+  level: INFO
+  log_file: ./logs/etl.log
+  console_output: true

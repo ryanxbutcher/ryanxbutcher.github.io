@@ -1,0 +1,29 @@
+# Data files (too large for git)
+data/input/*.csv
+data/archive/*.csv
+data/rejected/*.csv
+
+# Database files
+db/*.db
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
+# Logs
+logs/*.log
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

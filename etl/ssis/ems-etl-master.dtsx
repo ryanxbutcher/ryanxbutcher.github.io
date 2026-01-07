@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/6/2026 12:00:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WORKSTATION"
+  DTS:CreatorName="JRyanButcher"
+  DTS:DTSID="{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="EMS_ETL_Master"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{B2C3D4E5-F678-90AB-CDEF-123456789012}">
+
+  <!-- Package Parameters -->
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{C3D4E5F6-7890-ABCD-EF12-34567890ABCD}"
+      DTS:ObjectName="SourceFilePath">
+      <DTS:Property DTS:Name="ParameterValue">C:\Data\Input\ems_runs_2024.csv</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{D4E5F678-90AB-CDEF-1234-567890ABCDEF}"
+      DTS:ObjectName="TargetConnectionString">
+      <DTS:Property DTS:Name="ParameterValue">Data Source=localhost;Initial Catalog=EMS_DW;Integrated Security=SSPI;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{E5F67890-ABCD-EF12-3456-7890ABCDEF12}"
+      DTS:ObjectName="BatchSize">
+      <DTS:Property DTS:Name="ParameterValue">50000</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{F6789012-3456-7890-ABCD-EF1234567890}"
+      DTS:ObjectName="Environment">
+      <DTS:Property DTS:Name="ParameterValue">dev</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+
+  <!-- Connection Managers -->
+  <DTS:ConnectionManagers>
+    <!-- Source CSV Connection -->
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FlatFile_EMS_Source]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{11111111-2222-3333-4444-555566667777}"
+      DTS:ObjectName="FlatFile_EMS_Source">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Data\Input\ems_runs_2024.csv">
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+
+    <!-- Target SQL Server Connection -->
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_EMS_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{22222222-3333-4444-5555-666677778888}"
+      DTS:ObjectName="OLEDB_EMS_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=EMS_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;">
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+
+  <!-- Variables -->
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33333333-4444-5555-6666-777788889999}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RunID">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{44444444-5555-6666-7777-888899990000}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsStaged">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55555555-6666-7777-8888-999900001111}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsLoaded">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+
+  <!-- Control Flow -->
+  <DTS:Executables>
+
+    <!-- Sequence: Initialize -->
+    <DTS:Executable
+      DTS:refId="Package\SEQ_Initialize"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DTSID="{AAAAAAAA-BBBB-CCCC-DDDD-EEEEFFFFAAAA}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:ObjectName="SEQ_Initialize">
+
+      <DTS:Executables>
+        <!-- SQL Task: Start Run Log -->
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Initialize\SQL_StartRunLog"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DTSID="{BBBBBBBB-CCCC-DDDD-EEEE-FFFFAAAABBBB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ObjectName="SQL_StartRunLog">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"
+              SQLTask:Connection="{22222222-3333-4444-5555-666677778888}"
+              SQLTask:SqlStatementSource="EXEC log.sp_StartRun @source_file = ?, @environment = ?, @load_type = 'full', @run_id = ? OUTPUT"
+              SQLTask:ResultType="ResultSetType_SingleRow">
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+
+        <!-- SQL Task: Truncate Staging -->
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Initialize\SQL_TruncateStaging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DTSID="{CCCCCCCC-DDDD-EEEE-FFFF-AAAABBBBCCCC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ObjectName="SQL_TruncateStaging">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"
+              SQLTask:Connection="{22222222-3333-4444-5555-666677778888}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE staging.STG_EMS_INCIDENT">
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Initialize.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DDDDDDDD-EEEE-FFFF-AAAA-BBBBCCCCDDDD}"
+          DTS:From="Package\SEQ_Initialize\SQL_StartRunLog"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQ_Initialize\SQL_TruncateStaging">
+        </DTS:PrecedenceConstraint>
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+
+    <!-- Sequence: Extract and Stage -->
+    <DTS:Executable
+      DTS:refId="Package\SEQ_ExtractStage"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DTSID="{EEEEEEEE-FFFF-AAAA-BBBB-CCCCDDDDEEEE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:ObjectName="SEQ_ExtractStage">
+
+      <DTS:Executables>
+        <!-- Data Flow: CSV to Staging -->
+        <DTS:Executable
+          DTS:refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DTSID="{FFFFFFFF-AAAA-BBBB-CCCC-DDDDEEEEFFFF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ObjectName="DFT_CSVtoStaging">
+          <DTS:ObjectData>
+            <pipeline version="1">
+              <components>
+                <!-- Flat File Source -->
+                <component
+                  refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\FF_Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  name="FF_Source">
+                  <properties>
+                    <property name="RetainNulls">false</property>
+                    <property name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\FF_Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FlatFile_EMS_Source]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\FF_Source.Outputs[Flat File Source Output]" name="Flat File Source Output">
+                    </output>
+                  </outputs>
+                </component>
+
+                <!-- Row Count -->
+                <component
+                  refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\RC_RowCount"
+                  componentClassID="Microsoft.RowCount"
+                  name="RC_RowCount">
+                  <properties>
+                    <property name="VariableName">User::RowsStaged</property>
+                  </properties>
+                </component>
+
+                <!-- OLE DB Destination -->
+                <component
+                  refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\OLE_Staging"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  name="OLE_Staging">
+                  <properties>
+                    <property name="CommandTimeout">0</property>
+                    <property name="OpenRowset">[staging].[STG_EMS_INCIDENT]</property>
+                    <property name="AccessMode">3</property>
+                    <property name="FastLoadKeepIdentity">false</property>
+                    <property name="FastLoadKeepNulls">false</property>
+                    <property name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property name="FastLoadMaxInsertCommitSize">50000</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\OLE_Staging.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[OLEDB_EMS_DW]"
+                      name="OleDbConnection" />
+                  </connections>
+                </component>
+              </components>
+
+              <paths>
+                <path refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging.Paths[Source to RowCount]"
+                  startId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\FF_Source.Outputs[Flat File Source Output]"
+                  endId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\RC_RowCount.Inputs[Row Count Input 1]"
+                  name="Source to RowCount" />
+                <path refId="Package\SEQ_ExtractStage\DFT_CSVtoStaging.Paths[RowCount to Destination]"
+                  startId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\RC_RowCount.Outputs[Row Count Output 1]"
+                  endId="Package\SEQ_ExtractStage\DFT_CSVtoStaging\OLE_Staging.Inputs[OLE DB Destination Input]"
+                  name="RowCount to Destination" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+
+    <!-- Sequence: Load Dimensions -->
+    <DTS:Executable
+      DTS:refId="Package\SEQ_LoadDimensions"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DTSID="{11112222-3333-4444-5555-666677778888}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:ObjectName="SEQ_LoadDimensions">
+      <!-- Note: Child packages would be called here for each dimension -->
+      <!-- Using Execute Package Task or Data Flow Tasks with SCD components -->
+    </DTS:Executable>
+
+    <!-- Sequence: Load Facts -->
+    <DTS:Executable
+      DTS:refId="Package\SEQ_LoadFacts"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DTSID="{22223333-4444-5555-6666-777788889999}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:ObjectName="SEQ_LoadFacts">
+      <!-- Data Flow: Staging to Fact with Lookup transformations -->
+    </DTS:Executable>
+
+    <!-- Sequence: Finalize -->
+    <DTS:Executable
+      DTS:refId="Package\SEQ_Finalize"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DTSID="{33334444-5555-6666-7777-888899990000}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:ObjectName="SEQ_Finalize">
+
+      <DTS:Executables>
+        <!-- SQL Task: End Run Log -->
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Finalize\SQL_EndRunLog"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DTSID="{44445555-6666-7777-8888-999900001111}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ObjectName="SQL_EndRunLog">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"
+              SQLTask:Connection="{22222222-3333-4444-5555-666677778888}"
+              SQLTask:SqlStatementSource="EXEC log.sp_EndRun @run_id = ?, @status = 'SUCCESS', @source_row_count = ?">
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+
+  </DTS:Executables>
+
+  <!-- Precedence Constraints (Control Flow Order) -->
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Init to Extract]"
+      DTS:CreationName=""
+      DTS:DTSID="{55556666-7777-8888-9999-AAAA0000BBBB}"
+      DTS:From="Package\SEQ_Initialize"
+      DTS:ObjectName="Init to Extract"
+      DTS:To="Package\SEQ_ExtractStage">
+    </DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Extract to Dims]"
+      DTS:CreationName=""
+      DTS:DTSID="{66667777-8888-9999-AAAA-BBBB0000CCCC}"
+      DTS:From="Package\SEQ_ExtractStage"
+      DTS:ObjectName="Extract to Dims"
+      DTS:To="Package\SEQ_LoadDimensions">
+    </DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Dims to Facts]"
+      DTS:CreationName=""
+      DTS:DTSID="{77778888-9999-AAAA-BBBB-CCCC0000DDDD}"
+      DTS:From="Package\SEQ_LoadDimensions"
+      DTS:ObjectName="Dims to Facts"
+      DTS:To="Package\SEQ_LoadFacts">
+    </DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Facts to Finalize]"
+      DTS:CreationName=""
+      DTS:DTSID="{88889999-AAAA-BBBB-CCCC-DDDD0000EEEE}"
+      DTS:From="Package\SEQ_LoadFacts"
+      DTS:ObjectName="Facts to Finalize"
+      DTS:To="Package\SEQ_Finalize">
+    </DTS:PrecedenceConstraint>
+  </DTS:PrecedenceConstraints>
+
+</DTS:Executable>

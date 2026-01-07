@@ -1,0 +1,21 @@
+# Production environment overrides
+
+environment: prod
+
+database:
+  type: sqlserver
+  sqlserver:
+    server: prod-sql-server.domain.com
+    database: EMS_DataWarehouse
+    trusted_connection: true
+
+etl:
+  batch_size: 100000
+  source_path: /data/ems/input/
+  archive_path: /data/ems/archive/
+  rejected_path: /data/ems/rejected/
+
+logging:
+  level: INFO
+  log_file: /var/log/ems-etl/etl.log
+  console_output: false
