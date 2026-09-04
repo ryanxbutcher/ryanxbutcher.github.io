@@ -1,0 +1,47 @@
+/* Hot Tip's pages, in the portfolio's own clothes. */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-card: #1a1a24;
+    --border: #2a2a3a;
+    --text-primary: #e4e4e7;
+    --text-secondary: #71717a;
+    --accent: #22d3ee;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding: 4rem 1.5rem 6rem;
+}
+main { max-width: 44rem; margin: 0 auto; }
+.eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: .75rem;
+}
+h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.15; font-weight: 700; }
+.updated { color: var(--text-secondary); font-size: .9rem; margin-top: .5rem; }
+h2 {
+    font-size: 1.2rem; font-weight: 600; margin: 2.75rem 0 .75rem;
+    padding-top: 1.75rem; border-top: 1px solid var(--border);
+}
+p, li { color: var(--text-primary); }
+p { margin: 1rem 0; }
+ul, dl { margin: 1rem 0; }
+ul { padding-left: 1.25rem; }
+li { margin: .55rem 0; }
+dt { font-weight: 600; margin-top: 1.35rem; }
+dd { margin: .3rem 0 0; color: var(--text-secondary); }
+strong { color: #fff; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(34, 211, 238, .35); }
+a:hover { border-bottom-color: var(--accent); }
+.lead {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem 1.5rem; margin: 2rem 0;
+}
+footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: .9rem;
+}
