@@ -30,6 +30,9 @@ is a change nobody can see.
   litter the next session cannot tell from unfinished work.
 - **Never hand Ryan a merge.** A close-out that says "ready to merge" is an
   unfinished session.
+- **Never rewrite pushed history.** No `--force`, no rebase or amend of
+  anything already on `origin/main`. pi-brain holds a clone of this repo
+  too, and a rewrite leaves it with no common ancestor to pull from.
 - **Prove it; do not claim it.** `git status --porcelain` empty and
   `git log --oneline origin/main..HEAD` empty before you say it is done.
   Report what they printed. A push here changes what the public sees, so
