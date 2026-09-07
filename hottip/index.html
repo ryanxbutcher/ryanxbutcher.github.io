@@ -82,17 +82,30 @@
   }
   .sub{color:var(--soft);margin-bottom:1.4rem;max-width:46ch}
 
-  .rooms{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
-  @media(max-width:33rem){.rooms{grid-template-columns:1fr}}
-  .rooms li{
-    position:relative;background:var(--card);border:1px solid var(--line);
-    border-radius:14px;padding:1rem 1.1rem 1.05rem 1.35rem;overflow:hidden;
-    transition:transform .18s ease,border-color .18s ease;
+  /* The doors, as the app's own first screen shows them: the room, the
+     person who works in it, and the name. Nothing else — the jokes are
+     theirs to make, not the website's to spoil. */
+  .doors{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-top:1.4rem}
+  @media(max-width:44rem){.doors{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:26rem){.doors{grid-template-columns:1fr}}
+  .doors li{
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
   }
-  .rooms li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
-  .rooms li:hover{transform:translateY(-3px);border-color:var(--c)}
-  .rooms b{display:block;font-family:"Archivo Black",sans-serif;font-weight:400;font-size:1.02rem}
-  .rooms span{color:var(--soft);font-size:.93rem}
+  .doors li:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 10px 34px -14px var(--c)}
+  .doors img{width:100%;display:block;aspect-ratio:640/420;object-fit:cover}
+  .doors b{
+    display:block;font-family:"Archivo Black",sans-serif;font-weight:400;
+    font-size:.92rem;padding:.72rem .9rem .85rem;color:var(--ink);
+  }
+
+  .uses{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-top:1.4rem}
+  @media(max-width:44rem){.uses{grid-template-columns:1fr}}
+  .uses li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.15rem 1.2rem}
+  .uses b{display:block;font-family:"Archivo Black",sans-serif;font-weight:400;
+    font-size:1rem;margin-bottom:.4rem}
+  .uses span{color:var(--soft);font-size:.95rem}
+  .uses .out{display:block;margin-top:.6rem;color:var(--ice);font-size:.85rem}
 
   .never{list-style:none;display:grid;gap:.9rem;
     border:1px solid rgba(255,59,92,.35);border-radius:16px;padding:1.5rem 1.6rem;
@@ -154,19 +167,40 @@
   <video src="app-preview.mp4" poster="poster.jpg" controls playsinline muted loop
          aria-label="A check, a 25% tip, a 2% tip, and Pete riding off into the desert."></video>
 </div>
-<p class="cap">Tip Pete 25% and he’s suspicious. Tip him 2% and he’s delighted.</p>
+<p class="cap">Twenty seconds, and the sound is off on purpose.</p>
 
 <h2>Six rooms. Six people with views.</h2>
 <p class="sub">Pick one and somebody is working in it. Tip well and they say
    so. Tip badly and they say that too. Nobody is ever mean to you about
    money you don’t have.</p>
-<ul class="rooms">
-  <li style="--c:#e0334f"><b>The Lounge</b><span>Mandy meets everyone at the door. She has heard it.</span></li>
-  <li style="--c:#ff6b6b"><b>The Diner</b><span>Mustang Sally writes everything down. Everything.</span></li>
-  <li style="--c:#a06cff"><b>The Blue Note</b><span>Tia keeps the cleanest books in the house.</span></li>
-  <li style="--c:#3ef0a8"><b>The Abduction</b><span>Hanahhh came for a specimen and stayed for the drinks.</span></li>
-  <li style="--c:#ffb43d"><b>The Traveling Mujer</b><span>Elizabeth counts your change back to you.</span></li>
-  <li style="--c:#4aa8ff"><b>The Open Road</b><span>Pete’s scale runs backwards. He’s proud of a small tip.</span></li>
+<ul class="doors">
+  <li style="--c:#e0334f"><img src="door-lounge.jpg" alt="The Lounge" loading="lazy"><b>The Lounge</b></li>
+  <li style="--c:#ff6b6b"><img src="door-diner.jpg" alt="The Diner" loading="lazy"><b>The Diner</b></li>
+  <li style="--c:#a06cff"><img src="door-jazz.jpg" alt="The Blue Note" loading="lazy"><b>The Blue Note</b></li>
+  <li style="--c:#3ef0a8"><img src="door-ufo.jpg" alt="The Abduction" loading="lazy"><b>The Abduction</b></li>
+  <li style="--c:#ffb43d"><img src="door-taco.jpg" alt="The Traveling Mujer" loading="lazy"><b>The Traveling Mujer</b></li>
+  <li style="--c:#4aa8ff"><img src="door-road.jpg" alt="The Open Road" loading="lazy"><b>The Open Road</b></li>
+</ul>
+
+<h2>What it’s actually for.</h2>
+<p class="sub">Under the jokes it is a real ledger, and everything in it is
+   yours to take back out.</p>
+<ul class="uses">
+  <li><b>A weekend run</b><span>Log every stop — the place, what it cost, a
+      photo of it, a photo of the plate, a rating out of five. Tally adds the
+      run up: spent, days, per day, per stop.</span>
+      <span class="out">Comes out as an instant print with the town, the
+      county and the coordinates across the bottom.</span></li>
+  <li><b>A night out</b><span>Put the check on somebody’s tab and the app
+      keeps a running one. Split it three ways by what each person actually
+      ate, and send everyone a real receipt in Messages.</span>
+      <span class="out">Photograph the plate and that night has a picture
+      you would actually post.</span></li>
+  <li><b>Your data, back</b><span>Export the whole ledger — every run, stop,
+      person, expense and photo — as one package: a JSON file and a folder of
+      pictures, into a folder you own.</span>
+      <span class="out">Open it in a spreadsheet, put it on a map, or move it
+      to a new phone. It never passes through anyone.</span></li>
 </ul>
 
 <h2>Nobody is going to explain any of this.</h2>
