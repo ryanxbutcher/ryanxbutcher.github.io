@@ -1,44 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="_style.css"><title>Hot Tip — Support</title></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot Tip — Support</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; padding: 2.5rem 1.25rem 4rem; max-width: 42rem;
+         font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  h1 { font-size: 1.9rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.25rem; }
+  dt { font-weight: 600; margin-top: 1rem; }
+  dd { margin: .25rem 0 0; }
+  footer { margin-top: 3rem; font-size: .9rem; opacity: .7; }
+</style>
+</head>
 <body>
-<main>
-<p class="eyebrow">Hot Tip for iPhone</p>
-<h1>Support</h1>
-
-<div class="lead">
-<p>Email <a href="mailto:ryan300x@gmail.com">ryan300x@gmail.com</a> and you will
-get a reply from the person who wrote the app.</p>
-</div>
+<h1>Hot Tip — Support</h1>
+<p>Email <a href="mailto:ryan300x@gmail.com">ryan300x@gmail.com</a> and you
+will get a reply from the person who wrote the app.</p>
 
 <h2>Common questions</h2>
 <dl>
   <dt>How do I type a bill?</dt>
-  <dd>The keypad works right to left, like a cash register. 4237 is $42.37.</dd>
+  <dd>The keypad works right to left, like a cash register. 4237 is
+      $42.37.</dd>
 
   <dt>Why did my total go up a few cents?</dt>
-  <dd>Out of the box the total rounds up to the next dollar. The TOTAL line says
-      "ROUNDED ↑" when that happens, and the TIP line shows what you actually
-      left. Change it in Settings ▸ Rounding.</dd>
+  <dd>Out of the box the total rounds up to the next dollar. The TOTAL line
+      says "ROUNDED ↑" when that happens, and the TIP line shows what you
+      actually left. Change it in Settings ▸ Rounding.</dd>
 
   <dt>The Open Road seems to praise small tips.</dt>
-  <dd>It does. That character is cheap and his scale runs backwards on purpose.
-      Every other room reads a tip the normal way.</dd>
+  <dd>It does. That character is cheap and his scale runs backwards on
+      purpose. Every other room reads a tip the normal way.</dd>
 
   <dt>Where did my souvenir photo go?</dt>
-  <dd>To your camera roll, if you allowed Photos access when asked. You can make
-      it again any time: swipe or press and hold a stop in the Road Log and
-      choose Souvenir.</dd>
+  <dd>To your camera roll, if you allowed Photos access when asked. You can
+      make it again any time: swipe or press and hold a stop in the Road
+      Log and choose Souvenir.</dd>
 
   <dt>Can I get my data out?</dt>
-  <dd>Settings ▸ Export writes the whole ledger as CSV into a folder you own,
-      reachable from the Files app under On My iPhone ▸ Hot Tip.</dd>
+  <dd>Settings ▸ Your data ▸ Export writes the whole ledger — every run,
+      stop, person, expense, milestone and photo — as a <code>.hottip</code>
+      package (a <code>ledger.json</code> plus a photos folder) into a folder
+      you own: iCloud Drive ▸ Hot Tip when iCloud Drive is on, otherwise On
+      My iPhone ▸ Hot Tip. A backup of the same package is refreshed there
+      automatically whenever you leave the app with something new. To move
+      to a new phone or take a friend's rides, tap the package in Files, or
+      use Settings ▸ Import — it adds what is missing and never deletes.</dd>
 
   <dt>Does the app track me or show ads?</dt>
-  <dd>No, and it never will. See the <a href="privacy.html">privacy policy</a>.</dd>
+  <dd>No ads, no analytics, no tracking and no account, and it will stay
+      that way. See the <a href="privacy.html">privacy policy</a>.</dd>
+
+  <dt>Why does the app ask for my location and camera?</dt>
+  <dd>Location does two jobs, both only while the app is open: it stamps the
+      town, county and coordinates on a road-stop souvenir, and — at reduced
+      accuracy — it lets the rooms ask Apple Weather what it is like outside,
+      so the highway can go gold at sunset and rain can show through the
+      diner window. Your location goes to Apple for that answer and nowhere
+      else; it is never stored and never sent to the developer. Turn it off
+      in Settings ▸ Outside. The camera is only for photographing a receipt,
+      a place or a plate, and that photo stays in the app's own store on your
+      phone.</dd>
+
+  <dt>What does the app cost?</dt>
+  <dd>Nothing. Every room, every feature and every update is included.
+      Nothing is locked, nothing is a trial, and nothing expires. There is a
+      busker's case at the bottom of Settings if you want to leave something
+      — it buys nothing, unlocks nothing, and the app never asks.</dd>
 </dl>
 
-<footer>Hot Tip is made by Ryan Butcher. <a href="privacy.html">Privacy</a></footer>
-</main>
+<footer>Hot Tip is made by Ryan Butcher.</footer>
 </body>
 </html>
