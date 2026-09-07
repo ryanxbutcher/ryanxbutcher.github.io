@@ -40,7 +40,16 @@
       radial-gradient(46rem 28rem at 6% 62%, rgba(255,180,61,.10), transparent 60%);
   }
 
-  header{padding:5rem 0 3rem;text-align:center}
+  /* The road the whole thing is strung along. Generated for this page, not
+     lifted from the app — the app has no shot of the world from outside. */
+  .road{position:relative;margin:0 -1.25rem;overflow:hidden}
+  .road img{width:100%;display:block}
+  .road::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,13,24,.55) 0%,rgba(8,13,24,0) 28%,rgba(8,13,24,.35) 66%,var(--night) 100%);
+  }
+  header{padding:2.5rem 0 3rem;text-align:center;position:relative;margin-top:-5.5rem;z-index:1}
+  @media(max-width:40rem){header{margin-top:-3rem}}
   .sign{
     font-family:Monoton,cursive; font-size:clamp(2.9rem,11vw,5.2rem);
     line-height:1; letter-spacing:.02em; color:#fff;
@@ -154,6 +163,8 @@
 <div class="glow"></div>
 <main>
 
+<div class="road"><img src="road.jpg" alt="A desert highway at night with a diner, a taco truck and a distant saucer strung along it." fetchpriority="high"></div>
+
 <header>
   <p class="sign">HOT <span class="t">TIP</span></p>
   <p class="open">Open late · iPhone · Free</p>
@@ -210,9 +221,9 @@
    stories travel the way travellers do — arriving before the people in them,
    picking something up at every stop.</p>
 <ul class="whispers">
-  <li>Four times now, across four different years, he has asked her the same
-      question.
-      <span class="tail">He does not appear to know it is the fourth.</span></li>
+  <li>Four times now, across four different years, he has let a bartender
+      know he’ll be back through in the spring.
+      <span class="tail">He considers each one a favour to her.</span></li>
   <li>Somebody came a very long way for a specimen and went home without one.
       <span class="tail">Whatever happened instead, two of them agreed never
       to write it down.</span></li>
