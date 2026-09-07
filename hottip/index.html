@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot Tip — a tip calculator with a cast</title>
+<meta name="description" content="Type the bill. Read the answer. Six rooms, six characters, and opinions about your 5%. No ads, no tracking, no subscription.">
+<meta property="og:title" content="Hot Tip — a tip calculator with a cast">
+<meta property="og:description" content="Tip well and they say so. Tip badly and they say that too. Free, and actually free.">
+<meta property="og:image" content="https://ryanxbutcher.github.io/hottip/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --navy: #0b1220;
+    --card: #131c2e;
+    --line: #22304a;
+    --ink: #f5f6fa;
+    --soft: #96a2be;
+    --red: #e84a54;
+    color-scheme: dark;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--navy); color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 0 1.25rem 5rem;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+  header { padding: 4.5rem 0 2.5rem; }
+  .mark { font-size: 1.05rem; font-weight: 800; letter-spacing: .18em; }
+  .mark span { color: var(--red); }
+  h1 {
+    font-size: clamp(2.1rem, 7vw, 3.2rem); line-height: 1.1;
+    margin: 1.5rem 0 1rem; letter-spacing: -.02em; text-wrap: balance;
+  }
+  .lede { font-size: 1.15rem; color: var(--soft); max-width: 34rem; }
+  .status {
+    display: inline-block; margin-top: 1.75rem; padding: .5rem .9rem;
+    border: 1px solid var(--line); border-radius: 999px;
+    font-size: .85rem; color: var(--soft);
+  }
+  video, .shot {
+    width: 100%; border-radius: 14px; border: 1px solid var(--line);
+    display: block; background: #000;
+  }
+  .frame { max-width: 20rem; margin: 2.5rem auto; }
+  h2 {
+    font-size: 1.5rem; margin: 3.5rem 0 1rem; letter-spacing: -.01em;
+  }
+  p + p { margin-top: 1rem; }
+  .rooms { list-style: none; display: grid; gap: .85rem; margin-top: 1.25rem; }
+  .rooms li {
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: .9rem 1.1rem; background: var(--card);
+  }
+  .rooms b { display: block; }
+  .rooms span { color: var(--soft); font-size: .95rem; }
+  .never { list-style: none; margin-top: 1.25rem; display: grid; gap: .8rem; }
+  .never li { padding-left: 1.9rem; position: relative; }
+  .never li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
+  .never b { color: var(--ink); }
+  .quote {
+    border-left: 3px solid var(--red); padding: .2rem 0 .2rem 1.1rem;
+    margin: 1.5rem 0; color: var(--soft); font-style: italic;
+  }
+  .stills { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-top: 1.25rem; }
+  @media (max-width: 34rem) { .stills { grid-template-columns: 1fr; } }
+  footer {
+    margin-top: 4rem; padding-top: 1.75rem; border-top: 1px solid var(--line);
+    color: var(--soft); font-size: .92rem;
+  }
+  a { color: var(--red); }
+  footer a { color: var(--soft); }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="mark">HOT <span>TIP</span></p>
+  <h1>A tip calculator that happens to have a cast.</h1>
+  <p class="lede">Type the bill. Read the answer. That’s the whole app — unless
+     you look up, in which case somebody is working in there and has opinions
+     about your 5%.</p>
+  <p class="status">Coming to the App Store · iPhone · Free</p>
+</header>
+
+<div class="frame">
+  <video src="app-preview.mp4" poster="poster.jpg" controls playsinline muted loop
+         aria-label="Hot Tip on the Open Road: a check, a 25% tip, a 2% tip, and Pete riding off."></video>
+</div>
+
+<h2>Six rooms. Six people with views.</h2>
+<p>Pick one and somebody is working in it. Tip well and they say so. Tip badly
+   and they say that too. Nobody is ever mean to you about money you don’t have.</p>
+<ul class="rooms">
+  <li><b>The Lounge</b><span>Mandy meets everyone at the door. She has heard it.</span></li>
+  <li><b>The Diner</b><span>Mustang Sally writes everything down. Everything.</span></li>
+  <li><b>The Blue Note</b><span>Tia keeps the cleanest books in the house.</span></li>
+  <li><b>The Abduction</b><span>Hanahhh came for a specimen and stayed for the drinks.</span></li>
+  <li><b>The Traveling Mujer</b><span>Elizabeth counts your change back to you.</span></li>
+  <li><b>The Open Road</b><span>Pete’s scale runs backwards. Tip him 2% and he’s thrilled.</span></li>
+</ul>
+
+<h2>It knows what it’s like outside.</h2>
+<p>Leave the weather on and the sky in the room is the sky over your head. The
+   highway goes gold at sunset and dark after it. The windows of the diner go
+   with the hour. Somebody mentions the forecast, usually unhelpfully.</p>
+
+<h2>What it will never do.</h2>
+<ul class="never">
+  <li><b>No ads.</b> Not one, not ever, not “just a small banner at the bottom.”</li>
+  <li><b>No tracking.</b> Nothing about you is collected. There is no server to send it to.</li>
+  <li><b>No subscription.</b> No pro tier, no trial, no feature dangled out of reach.</li>
+  <li><b>No tricks.</b> No fake urgency, no buried buttons, no guilt on the way out.</li>
+</ul>
+<p class="quote">I know it’s none of my business what you spent or who you were
+   with. You have enough people trying to trick you out of your hard-earned
+   money. I’d rather not be one of them.</p>
+<p>There’s a tip jar at the bottom of Settings. It unlocks nothing, because
+   there’s nothing left to unlock. The app never asks.</p>
+
+<h2>A look at it.</h2>
+<div class="stills">
+  <img class="shot" src="still-pete.png" alt="Pete on the Open Road: tip him 2% and he'll be thrilled.">
+  <img class="shot" src="still-mandy.png" alt="Mandy in the Lounge: tip well and she says so.">
+</div>
+
+<footer>
+  <p>Hot Tip is made by Ryan Butcher.
+     <a href="privacy.html">Privacy</a> · <a href="support.html">Support</a> ·
+     <a href="mailto:ryan300x@gmail.com">ryan300x@gmail.com</a></p>
+</footer>
+
+</main>
+</body>
+</html>
