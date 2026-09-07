@@ -50,7 +50,7 @@
   /* The road the whole thing is strung along. Generated for this page, not
      lifted from the app — the app has no shot of the world from outside. */
   .road{position:relative;margin:0 -1.25rem;overflow:hidden}
-  .road img{width:100%;display:block}
+  .road img{width:100%;height:auto;display:block}
   .road::after{
     content:"";position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(8,13,24,.55) 0%,rgba(8,13,24,0) 28%,rgba(8,13,24,.35) 66%,var(--night) 100%);
@@ -114,7 +114,7 @@
     transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
   }
   .doors li:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 10px 34px -14px var(--c)}
-  .doors img{width:100%;display:block;aspect-ratio:640/420;object-fit:cover}
+  .doors img{width:100%;height:auto;display:block;aspect-ratio:640/420;object-fit:cover}
   .doors b{
     display:block;font-family:"Archivo Black",sans-serif;font-weight:400;
     font-size:.92rem;padding:.72rem .9rem .85rem;color:var(--ink);
@@ -161,7 +161,7 @@
 
   .stills{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem}
   @media(max-width:33rem){.stills{grid-template-columns:1fr}}
-  .stills img{width:100%;aspect-ratio:720/900;border-radius:14px;
+  .stills img{width:100%;height:auto;aspect-ratio:720/900;border-radius:14px;
     border:1px solid var(--line);display:block}
 
   footer{margin-top:5rem;padding-top:1.8rem;border-top:1px solid var(--line);
