@@ -9,103 +9,191 @@
 <meta property="og:description" content="Tip well and they say so. Tip badly and they say that too. Free, and actually free.">
 <meta property="og:image" content="https://ryanxbutcher.github.io/hottip/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Archivo+Black&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0b1220;
-    --card: #131c2e;
-    --line: #22304a;
-    --ink: #f5f6fa;
-    --soft: #96a2be;
-    --red: #e84a54;
-    color-scheme: dark;
+  :root{
+    --night:#080d18; --deep:#0b1220; --card:#111b2e; --line:#20304c;
+    --ink:#f6f7fb; --soft:#93a1c0;
+    --neon:#ff3b5c;      /* the diner's sign */
+    --ice:#37e6f0;       /* the Blue Note's clock */
+    --amber:#ffb43d;     /* the string lights */
+    color-scheme:dark;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--navy); color: var(--ink);
-    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 0 1.25rem 5rem;
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--night); color:var(--ink);
+    font:400 17px/1.65 "DM Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    overflow-x:hidden;
   }
-  main { max-width: 46rem; margin: 0 auto; }
-  header { padding: 4.5rem 0 2.5rem; }
-  .mark { font-size: 1.05rem; font-weight: 800; letter-spacing: .18em; }
-  .mark span { color: var(--red); }
-  h1 {
-    font-size: clamp(2.1rem, 7vw, 3.2rem); line-height: 1.1;
-    margin: 1.5rem 0 1rem; letter-spacing: -.02em; text-wrap: balance;
+  main{max-width:52rem;margin:0 auto;padding:0 1.25rem 6rem}
+
+  /* The road at night: a horizon glow behind everything, the way every
+     room in the app is lit by something just off screen. */
+  .glow{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(70rem 34rem at 50% -14rem, rgba(255,59,92,.20), transparent 65%),
+      radial-gradient(50rem 30rem at 88% 22%, rgba(55,230,240,.11), transparent 60%),
+      radial-gradient(46rem 28rem at 6% 62%, rgba(255,180,61,.10), transparent 60%);
   }
-  .lede { font-size: 1.15rem; color: var(--soft); max-width: 34rem; }
-  .status {
-    display: inline-block; margin-top: 1.75rem; padding: .5rem .9rem;
-    border: 1px solid var(--line); border-radius: 999px;
-    font-size: .85rem; color: var(--soft);
+
+  header{padding:5rem 0 3rem;text-align:center}
+  .sign{
+    font-family:Monoton,cursive; font-size:clamp(2.9rem,11vw,5.2rem);
+    line-height:1; letter-spacing:.02em; color:#fff;
+    text-shadow:
+      0 0 6px rgba(255,255,255,.85),
+      0 0 22px var(--neon), 0 0 48px var(--neon), 0 0 90px rgba(255,59,92,.6);
+    animation:buzz 7s infinite;
   }
-  video, .shot {
-    width: 100%; border-radius: 14px; border: 1px solid var(--line);
-    display: block; background: #000;
+  .sign .t{color:#fff;text-shadow:0 0 6px rgba(255,255,255,.9),0 0 22px var(--ice),0 0 52px var(--ice)}
+  @keyframes buzz{
+    0%,96%,100%{opacity:1}
+    97%{opacity:.55} 97.6%{opacity:1} 98.4%{opacity:.7} 99%{opacity:1}
   }
-  .frame { max-width: 20rem; margin: 2.5rem auto; }
-  h2 {
-    font-size: 1.5rem; margin: 3.5rem 0 1rem; letter-spacing: -.01em;
+  .open{
+    display:inline-block;margin-top:1.4rem;padding:.42rem 1rem;
+    border:1px solid rgba(55,230,240,.45);border-radius:999px;
+    font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ice);text-shadow:0 0 12px rgba(55,230,240,.6);
   }
-  p + p { margin-top: 1rem; }
-  .rooms { list-style: none; display: grid; gap: .85rem; margin-top: 1.25rem; }
-  .rooms li {
-    border: 1px solid var(--line); border-radius: 12px;
-    padding: .9rem 1.1rem; background: var(--card);
+  h1{
+    font-family:"Archivo Black",sans-serif;font-weight:400;
+    font-size:clamp(1.85rem,5.4vw,2.9rem);line-height:1.08;
+    margin:2rem auto 1rem;max-width:22ch;text-wrap:balance;
   }
-  .rooms b { display: block; }
-  .rooms span { color: var(--soft); font-size: .95rem; }
-  .never { list-style: none; margin-top: 1.25rem; display: grid; gap: .8rem; }
-  .never li { padding-left: 1.9rem; position: relative; }
-  .never li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
-  .never b { color: var(--ink); }
-  .quote {
-    border-left: 3px solid var(--red); padding: .2rem 0 .2rem 1.1rem;
-    margin: 1.5rem 0; color: var(--soft); font-style: italic;
+  .lede{color:var(--soft);max-width:38ch;margin:0 auto;font-size:1.1rem}
+
+  .frame{max-width:19rem;margin:3rem auto 1rem;position:relative}
+  .frame::after{
+    content:"";position:absolute;inset:-14% -22%;z-index:-1;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(255,59,92,.30),transparent 72%);
+    filter:blur(14px);
   }
-  .stills { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-top: 1.25rem; }
-  @media (max-width: 34rem) { .stills { grid-template-columns: 1fr; } }
-  footer {
-    margin-top: 4rem; padding-top: 1.75rem; border-top: 1px solid var(--line);
-    color: var(--soft); font-size: .92rem;
+  video{width:100%;border-radius:20px;border:1px solid var(--line);display:block;background:#000}
+  .cap{text-align:center;color:var(--soft);font-size:.85rem;margin-top:.7rem}
+
+  h2{
+    font-family:"Archivo Black",sans-serif;font-weight:400;
+    font-size:clamp(1.4rem,4vw,1.95rem);margin:4.5rem 0 .6rem;text-wrap:balance;
   }
-  a { color: var(--red); }
-  footer a { color: var(--soft); }
+  .sub{color:var(--soft);margin-bottom:1.4rem;max-width:46ch}
+
+  .rooms{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+  @media(max-width:33rem){.rooms{grid-template-columns:1fr}}
+  .rooms li{
+    position:relative;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:1rem 1.1rem 1.05rem 1.35rem;overflow:hidden;
+    transition:transform .18s ease,border-color .18s ease;
+  }
+  .rooms li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+  .rooms li:hover{transform:translateY(-3px);border-color:var(--c)}
+  .rooms b{display:block;font-family:"Archivo Black",sans-serif;font-weight:400;font-size:1.02rem}
+  .rooms span{color:var(--soft);font-size:.93rem}
+
+  .never{list-style:none;display:grid;gap:.9rem;
+    border:1px solid rgba(255,59,92,.35);border-radius:16px;padding:1.5rem 1.6rem;
+    background:linear-gradient(180deg,rgba(255,59,92,.06),transparent);
+    box-shadow:0 0 40px rgba(255,59,92,.08) inset;}
+  .never li{padding-left:2.1rem;position:relative}
+  .never li::before{content:"✕";position:absolute;left:0;top:-.05rem;color:var(--neon);font-weight:700}
+  .never b{font-family:"Archivo Black",sans-serif;font-weight:400}
+
+  .whispers{list-style:none;display:grid;gap:0;margin-top:1.3rem;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .whispers li{padding:1rem 1.3rem;border-top:1px solid var(--line);
+    color:var(--ink);position:relative}
+  .whispers li:first-child{border-top:0}
+  .whispers li:nth-child(odd){background:rgba(255,255,255,.018)}
+  .whispers em{color:var(--soft);font-style:normal}
+  .whispers .tail{display:block;color:var(--ice);font-size:.86rem;margin-top:.35rem;
+    letter-spacing:.02em}
+  .nobody{font-family:"Archivo Black",sans-serif;font-weight:400;
+    text-align:center;color:var(--amber);margin-top:1.4rem;
+    text-shadow:0 0 20px rgba(255,180,61,.35);font-size:1.05rem}
+
+  blockquote{
+    margin:2rem 0;padding:1.3rem 1.5rem;border-left:3px solid var(--amber);
+    background:rgba(255,180,61,.05);border-radius:0 12px 12px 0;
+    color:var(--ink);font-size:1.06rem;
+  }
+  blockquote cite{display:block;margin-top:.7rem;color:var(--soft);font-style:normal;font-size:.9rem}
+
+  .stills{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem}
+  @media(max-width:33rem){.stills{grid-template-columns:1fr}}
+  .stills img{width:100%;border-radius:14px;border:1px solid var(--line);display:block}
+
+  footer{margin-top:5rem;padding-top:1.8rem;border-top:1px solid var(--line);
+    color:var(--soft);font-size:.92rem;text-align:center}
+  a{color:var(--neon);text-decoration-thickness:1px;text-underline-offset:3px}
+  footer a{color:var(--soft)}
+  @media(prefers-reduced-motion:reduce){
+    .sign{animation:none}
+    .rooms li{transition:none}
+    html{scroll-behavior:auto}
+  }
 </style>
 </head>
 <body>
+<div class="glow"></div>
 <main>
 
 <header>
-  <p class="mark">HOT <span>TIP</span></p>
+  <p class="sign">HOT <span class="t">TIP</span></p>
+  <p class="open">Open late · iPhone · Free</p>
   <h1>A tip calculator that happens to have a cast.</h1>
-  <p class="lede">Type the bill. Read the answer. That’s the whole app — unless
-     you look up, in which case somebody is working in there and has opinions
-     about your 5%.</p>
-  <p class="status">Coming to the App Store · iPhone · Free</p>
+  <p class="lede">Type the bill. Read the answer. That’s the whole app —
+     unless you look up, in which case somebody is working in there and has
+     opinions about your 5%.</p>
 </header>
 
 <div class="frame">
   <video src="app-preview.mp4" poster="poster.jpg" controls playsinline muted loop
-         aria-label="Hot Tip on the Open Road: a check, a 25% tip, a 2% tip, and Pete riding off."></video>
+         aria-label="A check, a 25% tip, a 2% tip, and Pete riding off into the desert."></video>
 </div>
+<p class="cap">Tip Pete 25% and he’s suspicious. Tip him 2% and he’s delighted.</p>
 
 <h2>Six rooms. Six people with views.</h2>
-<p>Pick one and somebody is working in it. Tip well and they say so. Tip badly
-   and they say that too. Nobody is ever mean to you about money you don’t have.</p>
+<p class="sub">Pick one and somebody is working in it. Tip well and they say
+   so. Tip badly and they say that too. Nobody is ever mean to you about
+   money you don’t have.</p>
 <ul class="rooms">
-  <li><b>The Lounge</b><span>Mandy meets everyone at the door. She has heard it.</span></li>
-  <li><b>The Diner</b><span>Mustang Sally writes everything down. Everything.</span></li>
-  <li><b>The Blue Note</b><span>Tia keeps the cleanest books in the house.</span></li>
-  <li><b>The Abduction</b><span>Hanahhh came for a specimen and stayed for the drinks.</span></li>
-  <li><b>The Traveling Mujer</b><span>Elizabeth counts your change back to you.</span></li>
-  <li><b>The Open Road</b><span>Pete’s scale runs backwards. Tip him 2% and he’s thrilled.</span></li>
+  <li style="--c:#e0334f"><b>The Lounge</b><span>Mandy meets everyone at the door. She has heard it.</span></li>
+  <li style="--c:#ff6b6b"><b>The Diner</b><span>Mustang Sally writes everything down. Everything.</span></li>
+  <li style="--c:#a06cff"><b>The Blue Note</b><span>Tia keeps the cleanest books in the house.</span></li>
+  <li style="--c:#3ef0a8"><b>The Abduction</b><span>Hanahhh came for a specimen and stayed for the drinks.</span></li>
+  <li style="--c:#ffb43d"><b>The Traveling Mujer</b><span>Elizabeth counts your change back to you.</span></li>
+  <li style="--c:#4aa8ff"><b>The Open Road</b><span>Pete’s scale runs backwards. He’s proud of a small tip.</span></li>
 </ul>
 
+<h2>Nobody is going to explain any of this.</h2>
+<p class="sub">The six of them know each other. They will not tell you how,
+   and they do not agree about it. Stay a while and you will start picking
+   it up sideways, out of things they say when they think the check is
+   settled.</p>
+<ul class="whispers">
+  <li>A biker has asked the woman behind the bar out four times over the years.
+      <span class="tail">She has never once remembered him.</span></li>
+  <li>Somebody came a very long way to collect a specimen from that lounge.
+      <span class="tail">The report was never filed. They’re friends now.</span></li>
+  <li>One slice of pie. Eleven coffee refills. A Tuesday.
+      <span class="tail">She wrote it down. She writes everything down.</span></li>
+  <li>Now and then a second motorcycle comes up the road.
+      <span class="tail">It’s the wrong make, and there’s a reason for that.</span></li>
+  <li>There is a roadrunner.
+      <span class="tail">Nobody has caught it.</span></li>
+</ul>
+<p class="nobody">Some of it only happens when it rains. Some of it only
+   happens if you leave them alone for a while.</p>
+
 <h2>It knows what it’s like outside.</h2>
-<p>Leave the weather on and the sky in the room is the sky over your head. The
-   highway goes gold at sunset and dark after it. The windows of the diner go
-   with the hour. Somebody mentions the forecast, usually unhelpfully.</p>
+<p class="sub">Leave the weather on and the sky in the room is the sky over
+   your head. The highway goes gold at sunset and dark after it. The windows
+   of the diner go with the hour. Somebody mentions the forecast, usually
+   unhelpfully.</p>
 
 <h2>What it will never do.</h2>
 <ul class="never">
@@ -114,21 +202,24 @@
   <li><b>No subscription.</b> No pro tier, no trial, no feature dangled out of reach.</li>
   <li><b>No tricks.</b> No fake urgency, no buried buttons, no guilt on the way out.</li>
 </ul>
-<p class="quote">I know it’s none of my business what you spent or who you were
-   with. You have enough people trying to trick you out of your hard-earned
-   money. I’d rather not be one of them.</p>
+<blockquote>
+  I know it’s none of my business what you spent or who you were with. You
+  have enough people trying to trick you out of your hard-earned money. I’d
+  rather not be one of them.
+  <cite>— Ryan, who made it</cite>
+</blockquote>
 <p>There’s a tip jar at the bottom of Settings. It unlocks nothing, because
    there’s nothing left to unlock. The app never asks.</p>
 
 <h2>A look at it.</h2>
 <div class="stills">
-  <img class="shot" src="still-pete.png" alt="Pete on the Open Road: tip him 2% and he'll be thrilled.">
-  <img class="shot" src="still-mandy.png" alt="Mandy in the Lounge: tip well and she says so.">
+  <img src="still-pete.png" alt="Pete on the Open Road: tip him 2% and he'll be thrilled." loading="lazy">
+  <img src="still-mandy.png" alt="Mandy in the Lounge: tip well and she says so." loading="lazy">
 </div>
 
 <footer>
-  <p>Hot Tip is made by Ryan Butcher.
-     <a href="privacy.html">Privacy</a> · <a href="support.html">Support</a> ·
+  <p>Hot Tip is made by Ryan Butcher.</p>
+  <p><a href="privacy.html">Privacy</a> · <a href="support.html">Support</a> ·
      <a href="mailto:ryan300x@gmail.com">ryan300x@gmail.com</a></p>
 </footer>
 
