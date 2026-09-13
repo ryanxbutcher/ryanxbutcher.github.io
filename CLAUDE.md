@@ -13,6 +13,20 @@ showcase: the EMS Data Warehouse assessment — `index.html` plus the
 - **It is a portfolio, not a project.** Content here is presentation of work
   done elsewhere. Build nothing here that wants a home of its own.
 
+## Name the session
+
+Ryan, 2026-09-13. Every session titles itself **`<Where> - <Topic>`** as
+soon as its first message makes the topic clear, and renames itself if the
+work shifts. Topic is the app or project and the job, in a few words. Where
+is the device Ryan is typing on (`Macbook`, `PC`) when that is also the
+machine running the session, and host `via` device when it is not
+(`pi-brain via iPhone`). A Remote Control, web or iOS session cannot detect
+the device: if Ryan has not said it, title with the host and ask in one
+trailing line of the first reply. Where no rename tool exists, put the
+intended title on the last line of the first reply so Ryan can set it. The
+full rule is in the global CLAUDE.md on both machines, rendered from
+pi-brain `config/global-CLAUDE.md`.
+
 ## Leaving `main` good
 
 Ryan is the sole contributor. There is no reviewer and no PR queue.
